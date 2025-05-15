@@ -10,11 +10,17 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^6.19.3",
+    "@monaco-editor/react": "^4.7.0",
     "convex": "^1.24.1",
+    "framer-motion": "^12.11.3",
+    "lucide-react": "^0.510.0",
     "next": "15.3.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "svix": "^1.65.0"
+    "react-hot-toast": "^2.5.2",
+    "react-syntax-highlighter": "^15.6.1",
+    "svix": "^1.65.0",
+    "zustand": "^4.5.7"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -22,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "tailwindcss": "^4",
