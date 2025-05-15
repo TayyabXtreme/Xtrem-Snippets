@@ -1,4 +1,3 @@
-// app/components/HeaderClient.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -12,7 +11,17 @@ import HeaderProfileBtn from "./HeaderProfileBtn";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utls"; // Optional utility for conditional classNames
 
-const HeaderClient = ({ convexUser }: { convexUser: any }) => {
+// Define a proper type for the convexUser prop
+interface ConvexUser {
+  isPro?: boolean;
+  // Add other properties that might be in your user object
+  id?: string;
+  name?: string;
+  email?: string;
+  // ... other properties
+}
+
+const HeaderClient = ({ convexUser }: { convexUser: ConvexUser | null }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -36,24 +45,23 @@ const HeaderClient = ({ convexUser }: { convexUser: any }) => {
           </Link>
 
           {/* Mobile menu toggle */}
-      
-<button
-  className="
-    lg:hidden p-2 rounded-md border border-gray-700
-    text-gray-300 hover:text-white hover:bg-gray-800
-    focus:outline-none focus:ring-2 focus:ring-blue-500
-    transition-colors duration-300 ease-in-out
-    flex items-center justify-center
-  "
-  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-  aria-label="Toggle menu"
->
-  {mobileMenuOpen ? (
-    <X className="w-6 h-6" />
-  ) : (
-    <Menu className="w-6 h-6" />
-  )}
-</button>
+          <button
+            className="
+              lg:hidden p-2 rounded-md border border-gray-700
+              text-gray-300 hover:text-white hover:bg-gray-800
+              focus:outline-none focus:ring-2 focus:ring-blue-500
+              transition-colors duration-300 ease-in-out
+              flex items-center justify-center
+            "
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {mobileMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
+          </button>
         </div>
 
         {/* Nav Items */}
@@ -77,11 +85,13 @@ const HeaderClient = ({ convexUser }: { convexUser: any }) => {
           </nav>
 
           <div className="flex flex-col lg:flex-row items-start lg:items-center gap-3 w-full lg:w-auto">
-            <div className="flex items-center gap-3">
+            
               <ThemeSelector />
               <LanguageSelector hasAccess={Boolean(convexUser?.isPro)} />
-            </div>
+         
+          <div className="flex items-center gap-2">
 
+         
             {!convexUser?.isPro && (
               <Link
                 href="/pricing"
@@ -97,7 +107,7 @@ const HeaderClient = ({ convexUser }: { convexUser: any }) => {
             <SignedIn>
               <RunButton />
             </SignedIn>
-
+ </div>
             <div className="pl-3 border-l border-gray-800">
               <HeaderProfileBtn />
             </div>
