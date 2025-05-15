@@ -419,38 +419,9 @@ export const THEME_DEFINITONS = {
   },
 };
 
-
-
-interface ThemeRule {
-  token: string;
-  foreground?: string;
-  background?: string;
-  fontStyle?: string;
-}
-
-type BuiltinTheme = "vs" | "vs-dark" | "hc-black";
-
-interface ThemeDefinition {
-  base: BuiltinTheme;
-  inherit: boolean;
-  rules: ThemeRule[];
-  colors: Record<string, string>;
-}
-
-const THEME_DEFINITIONS: Record<string, ThemeDefinition> = {
-  // Example theme
-  myDarkTheme: {
-    base: "vs-dark",
-    inherit: true,
-    rules: [{ token: "comment", foreground: "ffa500" }],
-    colors: { "editor.background": "#1e1e1e" },
-  },
-};
-
-// Helper function to define themes in Monaco
 // Helper function to define themes in Monaco
 export const defineMonacoThemes = (monaco: Monaco) => {
-  Object.entries(THEME_DEFINITIONS).forEach(([themeName, themeData]) => {
+  Object.entries(THEME_DEFINITONS).forEach(([themeName, themeData]) => {
     monaco.editor.defineTheme(themeName, {
       base: themeData.base,
       inherit: themeData.inherit,
